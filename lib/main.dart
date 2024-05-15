@@ -1,3 +1,4 @@
+import 'package:etec_tcc/pages/internal/home_page.dart';
 import 'package:flutter/material.dart';
 import 'pages/external/login_page.dart';
 
@@ -9,6 +10,10 @@ void main() {
         backgroundColor: Colors.white,
         elevation: 0,
       ),
+      // brightness: Brightness.dark,
+      textTheme: const TextTheme(
+        bodyMedium: TextStyle(color: Colors.white),// Set default text color
+      ),
       useMaterial3: true,
       fontFamily: 'Poppins',
     ),
@@ -19,7 +24,7 @@ void main() {
           fit: BoxFit.cover,
         ),
       ),
-      child: LoginPage(),
+      child: const HomePage(),
     ),
   ));
 }
