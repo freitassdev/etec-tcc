@@ -1,4 +1,4 @@
-import 'package:etec_tcc/pages/internal/home_page.dart';
+import 'package:etec_tcc/pages/internal/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'pages/external/login_page.dart';
 
@@ -24,7 +24,7 @@ void main() {
           fit: BoxFit.cover,
         ),
       ),
-      child: LoginPage(),
+      child: const HomePage(),
     ),
   ));
 }

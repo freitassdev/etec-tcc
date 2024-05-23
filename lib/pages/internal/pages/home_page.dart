@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -20,7 +21,7 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) {
           setState(() {
-            currentPageIndex = index;
+            currentPageIndex = index; 
           });
         },
         indicatorColor: Colors.blue[200],
@@ -39,7 +40,7 @@ class _HomePageState extends State<HomePage> {
             label: 'Avisos',
           ),
           NavigationDestination(
-             icon: FaIcon(FontAwesomeIcons.utensils),
+            icon: FaIcon(FontAwesomeIcons.utensils),
             label: 'Cardápio',
           ),
           NavigationDestination(
@@ -48,7 +49,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: Center(
+      body: const Center(
         child: Text('Home Page'),
       ),
     );
