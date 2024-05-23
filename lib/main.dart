@@ -24,7 +24,7 @@ void main() {
           fit: BoxFit.cover,
         ),
       ),
-      child: const HomePage(),
+      child: LoginPage(),
     ),
   ));
 }
