@@ -15,17 +15,8 @@ void main() {
       useMaterial3: true,
       fontFamily: 'Poppins',
     ),
-    home: Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          color: Colors.transparent,
-          image: DecorationImage(
-            image: AssetImage('assets/images/background.png'),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: const RouteProvider(),
-      ),
+    home: const Scaffold(
+      body: RouteProvider(),
     ),
   ));
 }

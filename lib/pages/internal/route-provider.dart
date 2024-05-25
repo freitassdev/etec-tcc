@@ -57,7 +57,16 @@ class _RouteProviderState extends State<RouteProvider> {
     }
 
     return MaterialPageRoute(
-      builder: (context) => page,
+      builder: (context) => Container(
+        decoration: const BoxDecoration(
+          color: Colors.transparent,
+          image: DecorationImage(
+            image: AssetImage('assets/images/background.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: page,
+      ),
       settings: RouteSettings(
         name: settings.name,
         arguments: {'displayName': displayName},
