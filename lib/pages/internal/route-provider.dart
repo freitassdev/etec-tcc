@@ -13,13 +13,16 @@ class RouteProvider extends StatefulWidget {
 class _RouteProviderState extends State<RouteProvider> {
   final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
   int currentPageIndex = 0;
+  String? routeDisplayName;
+
+  @override
+  void initState() {
+    super.initState();
+    routeDisplayName = 'Início';
+  }
 
   @override
   Widget build(BuildContext context) {
-    final RouteSettings currentRoute = ModalRoute.of(context)!.settings;
-    String? routeDisplayName =
-        (currentRoute.arguments as Map<String, dynamic>?)?['displayName'];
-
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AppBar(
@@ -40,7 +43,7 @@ class _RouteProviderState extends State<RouteProvider> {
     switch (settings.name) {
       case '/matters':
         page = Container(
-          color: Colors.green,
+          color: Colors.transparent,
           child: Center(child: Text('Matérias')),
         );
         displayName = 'Matérias';
@@ -55,6 +58,14 @@ class _RouteProviderState extends State<RouteProvider> {
         displayName = 'Início';
         break;
     }
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        setState(() {
+          routeDisplayName = displayName;
+        });
+      }
+    });
 
     return MaterialPageRoute(
       builder: (context) => Container(

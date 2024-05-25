@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.6
   lucide_icons: ^0.257.0
   font_awesome_flutter: ^10.7.0
+  inner_shadow_widget: ^0.0.3
 
 dev_dependencies:
   flutter_test:
