@@ -10,7 +10,7 @@ class IDay {
 class MatterCard extends StatelessWidget {
   final String day;
   final String matter;
-  MatterCard({super.key, this.day = 'Segunda-feira', required ,this.matter});
+  MatterCard({super.key, this.day = 'Segunda-feira', required this.matter});
 
   final List<IDay> days = [
     IDay(day: 'Segunda-feira', color: Colors.red),
@@ -65,9 +65,9 @@ class MatterCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 8),
-          const Text(
-            'Descrição da matéria',
-            style: TextStyle(
+          Text(
+            matter,
+            style: const TextStyle(
               color: Colors.black,
               fontSize: 16,
             ),
