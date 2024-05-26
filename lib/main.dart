@@ -1,4 +1,4 @@
-import 'package:etec_tcc/pages/internal/route-provider.dart';
+import 'package:etec_tcc/pages/internal/route_provider.dart';
 import 'package:flutter/material.dart';
 
 void main() {

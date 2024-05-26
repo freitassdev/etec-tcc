@@ -1,3 +1,4 @@
+import 'package:etec_tcc/pages/internal/pages/matters_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -44,7 +45,7 @@ class _RouteProviderState extends State<RouteProvider> {
       case '/matters':
         page = Container(
           color: Colors.transparent,
-          child: Center(child: Text('Matérias')),
+          child: const MattersPage(),
         );
         displayName = 'Matérias';
         break;
