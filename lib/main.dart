@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(MaterialApp(
+    debugShowCheckedModeBanner: true,
     theme: ThemeData(
       primarySwatch: Colors.blue,
       appBarTheme: const AppBarTheme(

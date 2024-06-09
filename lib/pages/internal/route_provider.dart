@@ -1,7 +1,7 @@
 import 'package:etec_tcc/pages/internal/pages/matters_page.dart';
+import 'package:etec_tcc/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import 'pages/home_page.dart';
 
 class RouteProvider extends StatefulWidget {
@@ -13,6 +13,7 @@ class RouteProvider extends StatefulWidget {
 
 class _RouteProviderState extends State<RouteProvider> {
   final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
+  final AuthService _authService = AuthService();
   int currentPageIndex = 0;
   String? routeDisplayName;
 
@@ -40,7 +41,7 @@ class _RouteProviderState extends State<RouteProvider> {
   Route<dynamic> _generateRoute(RouteSettings settings) {
     Widget page;
     String displayName;
-
+    _authService.useBiometric().then((res) => print(res));
     switch (settings.name) {
       case '/matters':
         page = Container(
