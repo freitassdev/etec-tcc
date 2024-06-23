@@ -39,7 +39,7 @@ class _NoticesSectionState extends State<NoticesSection> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SectionTitle(
-            title: 'Notícias Gerais',
+            title: 'Aulas de Hoje',
           ),
           SizedBox(
             height: 190,

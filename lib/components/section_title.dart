@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:etec_tcc/constants/constants.dart';
 
 class SectionTitle extends StatelessWidget {
   const SectionTitle({
@@ -16,15 +17,14 @@ class SectionTitle extends StatelessWidget {
         Text(
           title,
           style: const TextStyle(
-            color: Colors.white,
+            color: ConstantsColors.primaryColor,
             fontSize: 26,
           ),
         ),
         const SizedBox(height: 8),
-        Container(
+        const SizedBox(
           width: double.infinity,
           height: 2,
-          color: Colors.white,
         ),
         const SizedBox(height: 16),
       ],
