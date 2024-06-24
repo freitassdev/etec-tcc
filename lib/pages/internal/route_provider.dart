@@ -1,9 +1,11 @@
 import 'package:etec_tcc/constants/constants.dart';
+import 'package:etec_tcc/pages/external/login_page.dart';
 import 'package:etec_tcc/pages/internal/pages/matters_page.dart';
 import 'package:etec_tcc/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+
 import 'pages/home_page.dart';
 
 class RouteProvider extends StatefulWidget {
@@ -18,65 +20,79 @@ class _RouteProviderState extends State<RouteProvider> {
   final AuthService _authService = AuthService();
   int currentPageIndex = 0;
   String? routeDisplayName;
-
+  String? currentRoute = '/login';
   @override
   void initState() {
     super.initState();
     routeDisplayName = 'Início';
   }
 
+  bool _isExternalRoute() {
+    return currentRoute == '/login';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(
-            LucideIcons.alignLeft,
-            color: ConstantsColors.primaryColor,
-          ),
-          iconSize: 38,
-          padding: const EdgeInsets.only(left: 15),
-          onPressed: () {
-            print('pressed menu');
-          },
-        ),
-        actions: const [
-          Row(
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    'Wiliam Nicolau',
-                    style: TextStyle(
-                        color: ConstantsColors.primaryColor,
-                        fontSize: 19,
-                        fontWeight: FontWeight.w500),
+      appBar: _isExternalRoute()
+          ? null
+          : PreferredSize(
+              preferredSize: const Size.fromHeight(80),
+              child: AppBar(
+                toolbarHeight: 80,
+                leading: IconButton(
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  icon: const Icon(
+                    LucideIcons.alignLeft,
+                    color: ConstantsColors.primaryColor,
                   ),
-                  Text(
-                    'Estudante',
-                    style: TextStyle(
-                        color: ConstantsColors.primaryColor,
-                        fontSize: 17,
-                        fontWeight: FontWeight.normal),
-                  ),
+                  iconSize: 38,
+                  padding: const EdgeInsets.only(left: 15),
+                  onPressed: () {
+                    print('pressed menu');
+                  },
+                ),
+                actions: const [
+                  Row(
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            'Wiliam Nicolau',
+                            style: TextStyle(
+                                color: ConstantsColors.primaryColor,
+                                fontSize: 19,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          Text(
+                            'Estudante',
+                            style: TextStyle(
+                                color: ConstantsColors.primaryColor,
+                                fontSize: 17,
+                                fontWeight: FontWeight.normal),
+                          ),
+                        ],
+                      ),
+                      SizedBox(width: 10),
+                      CircleAvatar(
+                        radius: 30,
+                        backgroundImage:
+                            AssetImage('assets/images/profile.png'),
+                      ),
+                      Padding(padding: EdgeInsets.only(right: 16))
+                    ],
+                  )
                 ],
               ),
-              SizedBox(width: 10),
-              CircleAvatar(
-                radius: 30,
-                backgroundImage: AssetImage('assets/images/profile.png'),
-              ),
-              Padding(padding: EdgeInsets.only(right: 16))
-            ],
-          )
-        ],
-      ),
-      bottomNavigationBar: _bottomNavigation(),
+            ),
+      bottomNavigationBar: _isExternalRoute() ? null : _bottomNavigation(),
       body: Navigator(
         key: _navigatorKey,
+        initialRoute: '/login',
         onGenerateRoute: _generateRoute,
       ),
     );
@@ -87,6 +103,10 @@ class _RouteProviderState extends State<RouteProvider> {
     String displayName;
     _authService.useBiometric().then((res) => print(res));
     switch (settings.name) {
+      case '/login':
+        page = LoginPage();
+        displayName = 'Login';
+        break;
       case '/matters':
         page = Container(
           color: Colors.transparent,
@@ -109,6 +129,7 @@ class _RouteProviderState extends State<RouteProvider> {
       if (mounted) {
         setState(() {
           routeDisplayName = displayName;
+          currentRoute = settings.name ?? '/';
         });
       }
     });
@@ -130,6 +151,8 @@ class _RouteProviderState extends State<RouteProvider> {
   Widget _bottomNavigation() {
     return NavigationBar(
       onDestinationSelected: (int index) => _onTap(index),
+      backgroundColor: Colors.white,
+      elevation: 1, //0 pra deixar 100% branco
       indicatorColor: Colors.black12,
       selectedIndex: currentPageIndex,
       destinations: const <Widget>[
@@ -181,7 +204,7 @@ class _RouteProviderState extends State<RouteProvider> {
         routeName = '/';
         break;
     }
-
+    
     _navigatorKey.currentState!.pushReplacementNamed(routeName);
     setState(() {
       currentPageIndex = tabIndex;
