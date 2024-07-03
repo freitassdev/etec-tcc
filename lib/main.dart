@@ -1,6 +1,6 @@
 import 'package:etec_tcc/pages/internal/route_provider.dart';
 import 'package:flutter/material.dart';
-
+/*Test commit */
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: true,
